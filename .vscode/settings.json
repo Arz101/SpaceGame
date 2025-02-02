@@ -1,0 +1,13 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/Users/adrian/Documents/Projects/SkyInvaders/SkyInvaders",
+            "binaryPath": "/Users/adrian/Documents/Projects/SkyInvaders/SkyInvaders/main",
+            "binaryArgs": []
+        }
+    ],
+    "files.associations": {
+        "vector": "cpp",
+        "new": "cpp"
+    }
+}
