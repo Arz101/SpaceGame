@@ -16,11 +16,13 @@ extern SDL_Texture* loadTexture(const char*);
 class Bullet{
 private:
     int x,y;
-    const int w =50;
+    const int w=50;
     const int h=50;
     const int velocity= 20;
+    const int enemyVelocity = 10;
     SDL_Texture* bulletTexture;
     SDL_Rect bulletRect;
+    SDL_Rect bulletHitBox;
 public:
     Bullet();
     Bullet(int, int);
@@ -30,7 +32,7 @@ public:
     void render(SDL_Renderer*);
     void bulletMove();
     void bulletEnemyMove();
-    SDL_Rect getRect();
+    SDL_Rect& getRect(){return bulletHitBox;};
     int getY();
     
 };

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include "SDL2/SDL_ttf.h"
 
 namespace cpt{
 
@@ -24,6 +25,8 @@ enum BulletTypes{
     
 SDL_Texture* loadTexture(const char*, SDL_Renderer*);
 SDL_bool isCollision(const SDL_Rect&, const SDL_Rect&);
+SDL_Texture* generteText(SDL_Renderer*, TTF_Font*, const char*, SDL_Color);
+bool init(SDL_Window**, SDL_Renderer**);
 
 }
 #endif /* Components_hpp */

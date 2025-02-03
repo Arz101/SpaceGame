@@ -14,7 +14,11 @@ Player::Player(){
 Player::Player(int x, int y, int w, int h, SDL_Renderer* render, const int CELL_SIZE){
     playerRect = {x,y,w,h};
     this->playerTexture = cpt::loadTexture("./resources/nave.png", render);
-    hpPlayer = new Health(3, render, CELL_SIZE);
+    hpPlayer = new Health(10, render, CELL_SIZE);
+    
+    int offsetX = 34;
+    int offsetY = 16;
+    playerHitBox ={playerRect.x + offsetX, playerRect.y + offsetY, 35,45};
 }
 
 Player::~Player(){
@@ -30,18 +34,23 @@ void Player::move(SDL_Event &e){
         case SDLK_UP:
             printf("Key Up is pressed \n");
             playerRect.y -= velocity;
+            playerHitBox.y -= velocity;
             break;
         case SDLK_DOWN:
             printf("Key Down is pressed\n");
             playerRect.y += velocity;
+            playerHitBox.y += velocity;
             break;
         case SDLK_LEFT:
             printf("Key Left is pressed\n");
             playerRect.x -= velocity;
+            playerHitBox.x -= velocity;
             break;
         case SDLK_RIGHT:
             printf("Key right is pressed\n");
             playerRect.x += velocity;
+            playerHitBox.x += velocity;
+
             break;
     }
 }
@@ -59,11 +68,9 @@ void Player::render(SDL_Renderer* render){
     if(SDL_RenderCopy(render, playerTexture, nullptr, &playerRect) != 0){
         printf("Render Copy Error: %s\n", SDL_GetError());
     }
+    SDL_SetRenderDrawColor(render, 255,0,0,255);
+    SDL_RenderDrawRect(render, &playerHitBox);
     hpPlayer->render(render);
-}
-
-SDL_Rect& Player::getRect(){
-    return playerRect;
 }
 
 SDL_Texture* Player::getTexture(){
@@ -93,4 +100,11 @@ bool Player::bulletsIsEmpty(){
 
 std::deque<Bullet*>& Player::getBullets(){
     return bullets;
+}
+
+void Player::destroyBulletByEnemyCollision(Bullet** b){
+    if(*b != nullptr){
+        delete *b;
+        *b = nullptr;
+    }
 }

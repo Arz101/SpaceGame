@@ -21,6 +21,7 @@ class Player{
 private:
     Health* hpPlayer = nullptr;
     SDL_Rect playerRect;
+    SDL_Rect playerHitBox;
     const int velocity = 10;
     std::deque<Bullet*> bullets;
 public:
@@ -33,7 +34,7 @@ public:
     void attack(SDL_Event&);
     void render(SDL_Renderer*);
     void die();
-    SDL_Rect& getRect();
+    SDL_Rect& getRect(){return playerHitBox;};
     SDL_Texture* getTexture();
     int getX();
     int getY();
@@ -41,6 +42,7 @@ public:
     bool bulletsIsEmpty();
     std::deque<Bullet*>& getBullets();
     Health* getHealth(){return hpPlayer;};
+    void destroyBulletByEnemyCollision(Bullet** b);
 };
 
 

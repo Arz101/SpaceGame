@@ -22,27 +22,29 @@ extern SDL_Texture* loadTexture(const char*);
 extern const int CELL_SIZE;
 
 class Enemy{
-private:
+protected:
     SDL_Texture* enemyTexture = nullptr;
     SDL_Texture* destroyTexure = nullptr;
     const int w = 100, h = 100;
     Bullet* bullet;
     int x, y;
     SDL_Rect enemyRect;
+    SDL_Rect enemyHitBox;
     std::deque<Bullet*> enemyBullets;
-    void generateCoords();
+    int generateCoords();
     bool destroyed = false;
     int velocity = 10;
     Health* enemyHealt = nullptr;
 public:
+    Enemy(int, SDL_Renderer*, const char*);
     Enemy(SDL_Renderer*);
     ~Enemy();
     
     void render(SDL_Renderer*);
-    void move();
+    virtual void move();
     void attack();
     void enemyDestroy(SDL_Renderer*);
-    SDL_Rect getRect();
+    SDL_Rect& getRect(){return enemyHitBox;};
     void setDestroyed();
     bool isDestroyed();
     Bullet* getBullet(){return bullet;};

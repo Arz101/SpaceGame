@@ -34,4 +34,34 @@ SDL_bool isCollision(const SDL_Rect& a, const SDL_Rect& b){
     return SDL_HasIntersection(&b,&a);
 }
 
+SDL_Texture* generteText(SDL_Renderer* render, TTF_Font* font, const char* text, SDL_Color color){
+    SDL_Texture* newText = nullptr;
+
+    if(!font){
+        printf("Error loading font: %s",TTF_GetError());
+        TTF_Quit();
+        SDL_Quit();
+        return nullptr;
+    }
+
+    SDL_Surface* chargedSurface = TTF_RenderText_Blended(font, text, color);
+    
+    if(chargedSurface != nullptr){
+        newText = SDL_CreateTextureFromSurface(render, chargedSurface);
+
+        if(newText == nullptr){
+            printf("Error: %s", SDL_GetError());
+            return nullptr;
+        }
+    } else{
+        return nullptr;
+    }
+
+    return newText;
+}
+
+bool init(SDL_Window** window, SDL_Renderer** render){
+    
+}
+
 }
