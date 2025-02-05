@@ -9,5 +9,6 @@
     "files.associations": {
         "vector": "cpp",
         "new": "cpp"
-    }
+    },
+    "makefile.makefilePath": "/Users/adrian/Documents/Projects/SkyInvaders/SkyInvaders/makefile"
 }

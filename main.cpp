@@ -15,11 +15,15 @@
 #include "Components.hpp"
 #include "Rocket.hpp"
 #include "SDL2/SDL_ttf.h"
+#include "ManagerIncludes/Button.hpp"
+#include "LevelManager.hpp"
 
 Player* player = nullptr;
 Enemy* enemy = nullptr;
 std::vector<Enemy*> enemies;
 Rocket* rocket = nullptr;
+
+UI::Button* managerButton = nullptr;
 
 
 SDL_Window* window = nullptr;
@@ -41,6 +45,10 @@ SDL_Texture* loadTexture(const char*);
 
 int main(int argc, char** argv) {
     // insert code here...
+    managerButton = new Button("Test", SDL_Rect{25*CELL_SIZE, 25*CELL_SIZE, 100,100}, SDL_Color{128,128,128,128}, nullptr, [](){
+        LevelManager* manager = new LevelManager(window);
+    });
+
     if(!init()){
         close();
         return -1;
@@ -164,7 +172,7 @@ void gameLoop(){
                 running = false;
             }
             player->move(e);
-
+            managerButton->OnClick(e);
             if(currentTime > lastTime + interval){
                 player->attack(e);
                 lastTime = currentTime;
@@ -259,6 +267,8 @@ void gameLoop(){
             }
         }
         loadText(kills);
+
+        managerButton->render(render);
         SDL_RenderPresent(render);
         
         Uint32 frame_time = SDL_GetTicks() - start_time;
