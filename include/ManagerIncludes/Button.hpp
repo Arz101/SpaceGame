@@ -4,26 +4,23 @@
 #include "SDL2/SDL.h"
 #include "Components.hpp"
 #include <functional>
+#include "CComponent.hpp"
 
 namespace UI{
 
-class Button{
+class CButton : public CComponent{
 private:
-    char* tittle;
-    SDL_Rect buttonRect;
-    SDL_Color buttonColor;
-    SDL_Texture* buttonTexture;
-    SDL_Texture* titileTexture;
-    bool visible = false;
-    std::function<void()> EventHandler;
+    enum class State{Normal, Horverd, Pressed};
+    State state = State::Normal;
+    const char* tittle;
+    SDL_Texture* tittleTexture;
+    std::function<void()> func;
 public:
-    Button(const char* , SDL_Rect,SDL_Color, SDL_Texture*, std::function<void()> EventHandler);
-    void render(SDL_Renderer*);
-    void ActionListener(SDL_Event& e);
-    void setButtonTittle(SDL_Renderer*);
-    void OnClick(SDL_Event&);
-    void setVisible(bool);
-    bool getVisible() {return visible;};
+    CButton(const char*,SDL_Rect,SDL_Color,SDL_Texture*, SDL_Renderer*,std::function<void()> EventHandler);
+    void render() override;
+    void EventHandler(SDL_Event& e) override;
+    void setButtonTittle();
+    bool isClicked(int&, int&);
 };
 
 }

@@ -24,6 +24,7 @@ private:
     SDL_Rect playerHitBox;
     const int velocity = 10;
     std::deque<Bullet*> bullets;
+    SDL_Renderer* r = nullptr;
 public:
     bool playerAttack = false;
     SDL_Texture* playerTexture=nullptr;

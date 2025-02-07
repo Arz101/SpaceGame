@@ -6,7 +6,7 @@
 #include "Components.hpp"
 #include <vector>
 #include "ManagerIncludes/Button.hpp"
-#include "ManagerComponents/Panel.cpp"
+#include "ManagerIncludes/Panel.hpp"
 
 class LevelManager{
 private:
@@ -14,7 +14,6 @@ private:
     const int CELL_COUNT = 25;
     SDL_Window* window = nullptr;
     SDL_Renderer* render = nullptr;
-    UI::CPanel panel;
 public:
     LevelManager(SDL_Window*);
     bool init();

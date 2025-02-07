@@ -4,24 +4,21 @@
 #include "SDL2/SDL.h"
 #include <vector>
 #include "Button.hpp"
+#include "CComponent.hpp"
 
 namespace UI{
 
-class CPanel{
+class CPanel : public CComponent{
 private:
-    SDL_Rect rectPanel;
-    SDL_Color color;
-    SDL_Texture* panelTexture;
-    bool visible = false;
-    std::vector<Button*> buttons;
+    std::vector<CButton*> buttons;
     std::vector<CPanel*> panels;
 public:
-    CPanel(SDL_Rect, SDL_Color);
-    void render(SDL_Renderer*);
-    void addButton(Button*);
+    CPanel(SDL_Rect, SDL_Color, SDL_Texture* ,SDL_Renderer*);
+    void render() override;
+    void EventHandler(SDL_Event&) override;
+    void addButton(CButton*);
     void addPanel(CPanel*);
-    void setVisible(bool);
-    bool getVisible(){return visible;}
+
 };
 
 }

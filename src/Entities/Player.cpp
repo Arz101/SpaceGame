@@ -58,7 +58,7 @@ void Player::move(SDL_Event &e){
 void Player::attack(SDL_Event& e){
     if(e.key.keysym.sym == SDLK_x){
         printf("Attack!\n");
-        Bullet* bullet = new Bullet(playerRect.x+25, playerRect.y+8);
+        Bullet* bullet = new Bullet(playerRect.x+25, playerRect.y+8,r);
         bullets.push_back(bullet);
         playerAttack = true;
     }

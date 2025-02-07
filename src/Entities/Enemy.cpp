@@ -18,7 +18,7 @@ Enemy::Enemy(int TYPE, SDL_Renderer* render, const char* path){
 }
 
 Enemy::Enemy(SDL_Renderer* render){
-    enemyTexture = loadTexture("./resources/enemy1.png");
+    enemyTexture = cpt::loadTexture("./resources/enemy1.png",render);
     destroyTexure = cpt::loadTexture("./resources/Explosion.png", render);
     this->x = generateCoords();
     y = -100;
@@ -100,5 +100,5 @@ bool Enemy::isDestroyed(){
 }
 
 void Enemy::attack(){
-    if(bullet == nullptr)bullet = new Bullet(enemyRect.x+25, enemyRect.y+8);
+    if(bullet == nullptr)bullet = new Bullet(enemyRect.x+25, enemyRect.y+8,r);
 }

@@ -50,18 +50,17 @@ SDL_Texture* generteText(SDL_Renderer* render, TTF_Font* font, const char* text,
         newText = SDL_CreateTextureFromSurface(render, chargedSurface);
 
         if(newText == nullptr){
-            printf("Error: %s", SDL_GetError());
+            printf("aError: %s", SDL_GetError());
             return nullptr;
         }
     } else{
+        printf("bError: %s\n", TTF_GetError());
         return nullptr;
     }
 
     return newText;
 }
 
-bool init(SDL_Window** window, SDL_Renderer** render){
-    
-}
+
 
 }

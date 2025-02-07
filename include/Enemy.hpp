@@ -25,6 +25,7 @@ class Enemy{
 protected:
     SDL_Texture* enemyTexture = nullptr;
     SDL_Texture* destroyTexure = nullptr;
+    SDL_Renderer* r;
     const int w = 100, h = 100;
     Bullet* bullet;
     int x, y;

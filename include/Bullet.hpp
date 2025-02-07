@@ -9,9 +9,8 @@
 #define Bullet_hpp
 
 #include <stdio.h>
-#include <SDL.h>
-
-extern SDL_Texture* loadTexture(const char*);
+#include "SDL2/SDL.h"
+#include "Components.hpp"
 
 class Bullet{
 private:
@@ -25,7 +24,7 @@ private:
     SDL_Rect bulletHitBox;
 public:
     Bullet();
-    Bullet(int, int);
+    Bullet(int, int, SDL_Renderer*);
     ~Bullet();
     void bulletCollision();
     void bulletPosition();

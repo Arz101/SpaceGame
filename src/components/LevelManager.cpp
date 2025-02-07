@@ -2,7 +2,7 @@
 
 LevelManager::LevelManager(SDL_Window* mainWindow){
     SDL_HideWindow(window);
-    Button* test = new Button("Test", SDL_Rect{3*CELL_SIZE, 25*CELL_SIZE, 100,100}, SDL_Color{128,128,128,128}, nullptr, [](){
+    UI::CButton* test = new UI::CButton("Test", SDL_Rect{3*CELL_SIZE, 25*CELL_SIZE, 100,100}, SDL_Color{128,128,128,128}, nullptr, render,[](){
         printf("Function");
     });
 
@@ -27,7 +27,7 @@ LevelManager::LevelManager(SDL_Window* mainWindow){
             SDL_SetRenderDrawColor(render, 255,255,255,0);
             SDL_RenderClear(render);
 
-            test->render(render);
+            test->render();
 
             SDL_RenderPresent(render);
 
@@ -55,4 +55,6 @@ bool LevelManager::init(){
     }
 
     SDL_SetRenderDrawColor(render, 255,255,255,0);
+
+    return true;
 }

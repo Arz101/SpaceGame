@@ -7,10 +7,10 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(int x, int y){
+Bullet::Bullet(int x, int y, SDL_Renderer* r){
     this->x = x;
     this->y = y;
-    bulletTexture = loadTexture("/Users/adrian/libreSprite/bullet.png");
+    bulletTexture = cpt::loadTexture("/Users/adrian/libreSprite/bullet.png",r);
     bulletRect = {this->x,this->y,w,h};
 
     int offsetX = 8;
